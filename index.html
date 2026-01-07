@@ -8,19 +8,46 @@
 </head>
 <body>
 
-    <div class="card">
-        <img src="images/包子.jpg" class="profile-img" alt="我的頭貼">
-        <div class="aa">
-        <h1><span class="highlight">永康街 2.0</span></h1>
-        </div>
-       
+    <div id="overlay" onclick="toggleBigPhoto()"></div>
 
+    <div class="card">
+        <div class="polaroid" id="photo-container" onclick="toggleBigPhoto()">
+            <img src="images/包子.jpg" id="baozi-img" class="profile-img" alt="我的頭貼">
+        </div>
+
+        <div class="aa">
+            <h1><span class="highlight">永康街 2.0</span></h1>
+        </div>
+        
         <div class="links">
             <a href="about.html">模組一:主題化街區</a>
             <a href="MyDreams.html">模組二:路線是體驗</a>
             <a href="dreamStarter.html">模組三:數位故事層</a>
         </div>
     </div>
+
+    <script>
+        // 【在這裡修改你的新照片路徑】
+        const originalPhoto = "images/包子.jpg";
+        const newPhoto = "images/永康歷史.png"; // ← 把這裡換成你新照片的檔名
+
+        function toggleBigPhoto() {
+            const container = document.getElementById('photo-container');
+            const img = document.getElementById('baozi-img');
+            const overlay = document.getElementById('overlay');
+
+            // 切換 CSS class (負責控制放大樣式)
+            container.classList.toggle('expanded-mode');
+            overlay.classList.toggle('active');
+            
+            // 判斷目前是否為放大模式，來更換照片
+            if (container.classList.contains('expanded-mode')) {
+                img.src = newPhoto;    // 變大時，換成新照片
+            } else {
+                img.src = originalPhoto; // 變小時，換回包子
+            }
+        }
+    </script>
 
 </body>
 </html>
