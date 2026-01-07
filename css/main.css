@@ -421,4 +421,14 @@ p { color: #AF4B4B; line-height: 1.6; margin: 5px 0; }
         width: 150px; /* 手機版插圖變小並移到上方 */
     }
     /* 或者你也可以在手機版直接隱藏插圖： display: none; */
+    .card {
+  transition: transform 0.3s ease; /* 增加平滑動畫 */
+}
+
+/* 在手機上，利用 :active 模擬手指按下的縮放感 */
+.card:active {
+  transform: scale(1.05); /* 放大 1.05 倍 */
+  z-index: 10;            /* 確保放大時不會被隔壁卡片遮住 */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* 增加陰影提升立體感 */
+}
 }
