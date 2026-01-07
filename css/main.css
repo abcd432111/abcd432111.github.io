@@ -1,0 +1,423 @@
+/* 基礎外觀 */
+body {
+    background-image: url('../images/米色.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* 卡片框架 */
+.card {
+    background: white;
+    /* 改成 90%，在手機上會留一點邊邊；但在電腦上最大只會到 380px */
+    width: 90%; 
+    max-width: 380px; 
+    
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0 15px 35px rgba(127, 126, 126, 0.4);
+    text-align: center;
+    box-sizing: border-box; /* 確保 padding 不會把卡片撐破 */
+}
+
+/* 首頁大頭貼 */
+.profile-img {
+    width: 180px;
+    height: 250px;
+    border-radius: 10px; /* Adjust border-radius for a rectangular shape */
+    border: 6px solid #F5F5DC;
+    object-fit: cover;
+    margin-bottom: 20px;
+    transition: 0.5s;
+}
+
+.profile-img:hover {
+    transform: scale(1.08); 
+    box-shadow: 0 0 30px 5px rgba(195, 195, 195, 0.8);
+}
+
+/* 文字風格 */
+h1, h2 { color: #AF4B4B; margin-bottom: 10px; }
+p { color: #AF4B4B; line-height: 1.6; margin: 5px 0; }
+.highlight { color: #AF4B4B; font-weight: bold; }
+
+.aa{
+    margin-top: -30px;
+    font-style: italic;
+}
+
+/* 按鈕選單樣式 (首頁與返回鍵共用) */
+.links a, .back-btn {
+    display: block;
+    text-decoration: none;
+    background: #fff;
+    color: #AF4B4B;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 50px;
+    border: 2px solid  #f0ebc1;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.links a:hover, .back-btn:hover {
+    transform: translateY(-5px); /* 往上跳一下 */
+    background: #b5a65b;
+    color: white;
+    box-shadow: 0 5px 15px rgba(248, 244, 196, 0.5);
+}
+
+/* 分頁內容排版  */
+.section-title {
+    border-bottom: 2px dashed #ffcad4;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+ul {
+    text-align: left;
+    color: #AF4B4B;
+    padding-left: 20px;
+    list-style: none;
+}
+
+li { margin-bottom: 10px; }
+li::before { content: "🌸 "; color: #AF4B4B; } /* 用小花當列表符號 */
+
+/*照片展示*/
+.polaroid-gallery {
+    display: flex;
+    flex-wrap: wrap;         /* 空間不夠會自動換行 */
+    justify-content: center; /* 居中對齊 */
+    gap: 15px;               /* 照片間距 */
+    margin: 25px 0;
+}
+
+.polaroid-item {
+    background: white;
+    padding: 6px 6px 22px 6px; /* 底部留白多一點像拍立得 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    width: 90px;             /* 縮小寬度，讓卡片塞得下 */
+    box-sizing: border-box;
+}
+
+.polaroid-item img {
+    width: 100%;             /* 圖片填滿小卡片 */
+    height: 90px;            /* 固定高度讓照片整齊 */
+    object-fit: cover;       /* 防止照片壓扁 */
+    border-radius: 4px;
+}
+
+/* 讓照片隨意歪斜 */
+.rotate-left { transform: rotate(-6deg); }
+.rotate-right { transform: rotate(6deg); }
+
+/* 碰觸照片時的放大與發光 */
+.polaroid-item:hover {
+    transform: rotate(0deg) scale(1.3); /* 變正並放大 */
+    z-index: 10;                        /* 浮在最上面 */
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.8); /* 強烈粉色發光 */
+    cursor: pointer;
+}
+
+/* 心得區塊微調 */
+.thoughts {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #888;
+    background: #fff9fa;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+/* --- 大學必做四件事 --- */
+
+/* 設定四個框框的排列方式 (2x2 網格) */
+.dreams-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 兩欄 */
+    gap: 15px;                      /* 框框之間的間距 */
+    margin: 25px 0;
+    perspective: 1000px;           /* 增加一點點立體感 */
+}
+
+/* 框框的基本樣子*/
+.dream-item {
+    background-color: #fdfdfd;      
+    border: 2px solid #fff0f3;
+    padding: 15px;
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 讓放大縮小有彈性的感覺 */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* 框框裡的文字設定 */
+.dream-item h3 {
+    font-size: 1rem;
+    color: #AF4B4B;
+    margin-bottom: 8px;
+}
+
+.dream-item p {
+    font-size: 14px;
+    color: #6f6f6f;
+}
+
+/* 滑鼠移上去放大並變色 */
+.dream-item:hover {
+    transform: scale(1.2);          /* 放大 1.2 倍 */
+    z-index: 10;                     /* 確保放大的框框會浮在最上面，不會被蓋住 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* 四種不同的透明底色 (滑鼠移上去才顯現) */
+.pink-bg:hover { background-color: rgba(255, 182, 193, 0.7) !important; }
+.blue-bg:hover { background-color: rgba(185, 226, 255, 0.7) !important; }
+.yellow-bg:hover { background-color: rgba(255, 243, 176, 0.7) !important; }
+.green-bg:hover { background-color: rgba(200, 240, 200, 0.7) !important; }
+
+/* 放大時文字變白比較清楚 */
+.dream-item:hover h3, .dream-item:hover p {
+    color: #555;
+}
+
+/* --- 始於足下 --- */
+
+.plan-timeline {
+    margin: 30px 0;
+    text-align: left; /* 讓計畫內容靠左好閱讀 */
+}
+
+/* 每個步驟的框框 */
+.plan-step {
+   background: linear-gradient(135deg, #ffffff 0%, #fdf9e8 100%);
+    border: 2px solid #f0e2b2;
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: all 0.4s ease; /* 滑順的動畫 */
+    cursor: pointer;
+}
+
+/* 步驟標籤 */
+.step-tag {
+    background-color: #c47979;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.plan-step h3 {
+    font-size: 1.1rem;
+    color: #867e64;
+    margin-bottom: 5px;
+}
+
+.plan-step p {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* 移上去後放大並產生漸層發光底色 */
+.plan-step:hover {
+    transform: scale(1.05); 
+    z-index: 5;
+    background: linear-gradient(135deg, #ffffff 0%, #fdf9e8 100%);
+    border-color: #b5a65b;
+    box-shadow: 0 10px 25px rgba(181, 166, 91, 0.2); 
+}
+
+
+
+/* 放大時文字顏色稍微加深 */
+.plan-step:hover h3 { color: #6d664d;}
+.plan-step:hover p { color: #867e64; }
+
+/* 新增的海報卡片樣式 */
+.plan-step.poster-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.poster-card .poster-image {
+    width: 150px; /* 設置海報圖片的寬度 */
+    height: 225px; /* 設置海報圖片的高度，形成長方形直立式 */
+    object-fit: cover; /* 確保圖片填充，不失真 */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* 當螢幕很小時的微調 */
+@media (max-width: 350px) {
+    .card {
+        padding: 20px; /* 縮小內距，留給內容更多空間 */
+    }
+    
+    /* 讓大學四件事的框框變成一整排，不要擠在兩排 */
+    .dreams-container {
+        grid-template-columns: 1fr; /* 變成一欄 */
+    }
+
+    .polaroid-item {
+        width: 100%; /* 拍立得照片在超小手機上變大張一點 */
+        max-width: 120px;
+    }
+}
+/* 基礎外觀 */
+body {
+    background-image: url('../images/米色.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* 頁面包裹容器：處理卡片與插圖的並排 */
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px; /* 插圖與卡片的間距 */
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* 側邊插圖樣式 */
+.side-decoration {
+    flex: 0 0 250px; /* 固定插圖寬度 */
+    display: flex;
+    justify-content: center;
+    animation: floating 4s ease-in-out infinite; /* 加入漂浮動畫 */
+}
+
+.side-decoration img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(181, 166, 91, 0.3)); /* 橄欖金色的陰影 */
+}
+
+/* 漂浮動畫腳本 */
+@keyframes floating {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* 卡片框架 */
+.card {
+    background: white;
+    width: 100%; 
+    max-width: 380px; 
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0 15px 35px rgba(127, 126, 126, 0.4);
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    position: relative;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: -80px;
+    width: 200px;
+    height: 200px;
+    background: url('../images/變異-.png') no-repeat center/contain;
+    z-index: 1;
+    transform: rotate(15deg);
+}
+
+/* 文字風格 */
+h1, h2 { color: #AF4B4B; margin-bottom: 10px; }
+p { color: #AF4B4B; line-height: 1.6; margin: 5px 0; }
+.aa { font-style: italic; color: #b5a65b; }
+
+/* 按鈕選單樣式 */
+.links a {
+    display: block;
+    text-decoration: none;
+    background: #fff;
+    color: #AF4B4B;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 50px;
+    border: 2px solid #f0ebc1;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    transform: translateY(-5px);
+    background: #b5a65b;
+    color: white;
+    box-shadow: 0 5px 15px rgba(181, 166, 91, 0.4);
+}
+
+/* 心得區塊 */
+.thoughts {
+    text-align: left;
+    font-size: 0.95rem;
+    color: #888;
+    background: linear-gradient(135deg, #ffffff 0%, #fdf9e8 100%);
+    padding: 20px;
+    border-radius: 25px;
+    border: 1px solid #f0e2b2;
+}
+
+/* 始於足下步驟框 (保留備用) */
+.plan-step {
+   background: linear-gradient(135deg, #ffffff 0%, #fdf9e8 100%);
+   border: 2px solid #f0e2b2;
+   border-radius: 25px;
+   padding: 20px;
+   margin-bottom: 20px;
+   transition: 0.4s ease;
+}
+
+.plan-step:hover {
+    transform: scale(1.05);
+    border-color: #b5a65b;
+    box-shadow: 0 10px 25px rgba(181, 166, 91, 0.2);
+}
+
+/* 響應式微調：手機版時插圖消失，確保卡片置中 */
+@media (max-width: 768px) {
+    .page-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .side-decoration {
+        flex: 0 0 auto;
+        width: 150px; /* 手機版插圖變小並移到上方 */
+    }
+    /* 或者你也可以在手機版直接隱藏插圖： display: none; */
+}
